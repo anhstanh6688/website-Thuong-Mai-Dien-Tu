@@ -102,7 +102,7 @@
 
     <!-- banner -->
     <div class="img--banner">
-      <img src="../../images/Tu-lanh-Mobile2.jpg" />
+      <img id="bannerImg" src="../../images/Tu-lanh-Mobile2.jpg" />
     </div>
 
     <!-- products -->
@@ -205,6 +205,95 @@
             >Xem chi tiết</a
           >
         </div>
+        <div class="product--item">
+          <img src="../../images/240183-600x600-2.jpg" width="250px" />
+          <h3>Tủ lạnh Samsung Inverter 307 lít RB30N4190BU/SV</h3>
+          <div style="color: red; font-weight: bold; font-size: 16px">
+            13.290.000đ
+          </div>
+
+          <div style="font-size: 13px; margin-top: 4px">
+            <del style="color: #888">14.980.000</del>
+            <span style="color: red; font-weight: bold; margin-left: 5px"
+              >-11%</span
+            >
+          </div>
+
+          <div style="font-size: 13px; margin-top: 5px; color: #333">
+            Quà 1.990.000₫
+          </div>
+
+          <div style="font-size: 13px; color: #666; margin-top: 5px">
+            ⭐ 4.9 • Đã bán 1,5k
+          </div>
+
+          <br />
+
+          <a href="../../products/product1/item4.html" class="detail-link"
+            >Xem chi tiết</a
+          >
+        </div>
+
+        <div class="product--item">
+          <img src="../../images/306555-600x600.jpg" width="250px" />
+          <h3>Tủ lạnh Samsung Inverter 305 lít Bespoke RT31CB56248ASV</h3>
+          <div style="color: red; font-weight: bold; font-size: 16px">
+            10.970.000₫
+          </div>
+
+          <div style="font-size: 13px; margin-top: 4px">
+            <del style="color: #888">16.260.000đ</del>
+            <span style="color: red; font-weight: bold; margin-left: 5px"
+              >-32%</span
+            >
+          </div>
+
+          <div style="font-size: 13px; margin-top: 5px; color: #333">
+            Quà 300.000₫
+          </div>
+
+          <div style="font-size: 13px; color: #666; margin-top: 5px">
+            ⭐ 4.9 • Đã bán 4,1k
+          </div>
+
+          <br />
+
+          <a href="../../products/product1/item5.html" class="detail-link"
+            >Xem chi tiết</a
+          >
+        </div>
+
+        <div class="product--item">
+          <img
+            src="../../images/tu-lanh-samsung-inverter-655-lit-side-by-side-rs70f65q3fsv-thumb-638798816622696523-600x600.jpg"
+            width="250px"
+          />
+          <h3>Tủ lạnh Aqua Inverter 646 lít Side By Side AQR-S682XA(SLB)</h3>
+          <div style="color: red; font-weight: bold; font-size: 16px">
+            16.610.000₫
+          </div>
+
+          <div style="font-size: 13px; margin-top: 4px">
+            <del style="color: #888">17.690.000</del>
+            <span style="color: red; font-weight: bold; margin-left: 5px"
+              >-6%</span
+            >
+          </div>
+
+          <div style="font-size: 13px; margin-top: 5px; color: #333">
+            Quà 850.000₫
+          </div>
+
+          <div style="font-size: 13px; color: #666; margin-top: 5px">
+            ⭐ 4.9 • Đã bán 1k
+          </div>
+
+          <br />
+
+          <a href="../../products/product1/item6.html" class="detail-link"
+            >Xem chi tiết</a
+          >
+        </div>
       </div>
     </div>
 
@@ -278,4 +367,29 @@
       </div>
     </footer>
   </body>
+
+  <script>
+    const imageList = [
+      " ../../images/banner5.jpg",
+      " ../../images/banner6.png",
+      " ../../images/banner7.jpg",
+      " ../../images/banner9.jpg",
+    ];
+
+    const bannerImg = document.getElementById("bannerImg");
+
+    // Preload ảnh
+    const preloadImages = imageList.map((src) => {
+      const img = new Image();
+      img.src = src;
+      return img;
+    });
+
+    let currentIndex = 0;
+    function changeBanner() {
+      currentIndex = (currentIndex + 1) % imageList.length;
+      bannerImg.src = imageList[currentIndex];
+    }
+    setInterval(changeBanner, 2000);
+  </script>
 </html>
