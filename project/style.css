@@ -752,6 +752,72 @@ header .item--dropdown > ul > li:hover {
   color: #fff;
 }
 
+/* chatbox */
+.chatbox {
+  width: 300px;
+  height: 400px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.chatbox-header {
+  background: #4caf50;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.chatbox-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 6px;
+  max-width: 80%;
+}
+
+.message.bot {
+  background: #f1f1f1;
+}
+
+.message.user {
+  background: #dcf8c6;
+  /* tự động căn chỉnh ra trái */
+  margin-left: auto;
+}
+
+.chatbox-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chatbox-footer input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.chatbox-footer button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
 /* footer */
 .footer-container {
   display: flex;
