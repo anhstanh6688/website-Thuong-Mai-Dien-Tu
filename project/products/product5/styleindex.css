@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 16px;
+    font-family:'Poppins', sans-serif;
+}
+
+.head {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 14px;
+    background: #f5f5f5;
+    padding: 8px 10px;
+}
+
+.head--left {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+}
+
+.head--right {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.info {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.info--call {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.info--call:hover {
+    background-color: #3ec155;
+    transition: background-color 0.5s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo img {
+    height: 50px; 
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.head--right .info:hover {
+    color: #0657a3;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px; 
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu_list {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu_list a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Drop menu */
+header .menu_list.dropdown{
+    position: relative;
+}
+
+header .menu_list.dropdown>ul {
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    top: 100%;
+    left: -15px;
+    width: 170px;
+    display: none;
+    z-index: 999;
+    padding: 0;
+}
+
+header .menu_list.dropdown:hover>ul {
+   display: block;
+}
+
+header .menu_list.dropdown>ul>li {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+header .menu_list.dropdown>ul>li:hover {
+    background-color:#f5f5f5;
+}
+
+
+/* Breadcrumb */
+.breadcrumb {
+    background: #ffffff;
+    padding: 15px 0;
+    font-size: 20px;
+}
+
+.breadcrumb-links a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.breadcrumb-links a:hover {
+    color: #3498db;
+}
+
+.breadcrumb-links span {
+    color: #333;
+    font-weight: 500;
+}
+
+
+/* banner */
+.img--banner {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.img--banner img {
+    object-fit:fill;
+    width: 100%;
+    height: 600px;
+    cursor: pointer;
+}
+
+/* products */
+.product--services {
+    text-align: center;
+    padding: 30px;
+    background: #f0f0f0;
+}
+
+.product--services h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.product--services p {
+  color: #000000;
+  font-size: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.product--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+   
+}
+
+.product--item {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.7s ease;
+  box-shadow: 0 5px 15px rgba(42, 8, 236, 0.1);
+}
+
+.product--item:hover {
+     transform: translateY(-20px);
+}
+
+.product--item h3 {
+    margin-bottom: 20px;
+}
+
+.product--item a {
+    background: #3498db;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+.product--item a:hover {
+    transform: translateY(-2px);
+    background-color: #2980b9;
+}
+
+.product--item p {
+    margin-bottom: 30px;
+}
+
+/* footer */
+.footer-container {
+    display: flex;
+    background-color: #1f1f1f;
+    color: white;
+    padding: 40px 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr; /* 4 cột: Địa chỉ/logo + 3 nhóm nội dung */
+    flex: 3;
+    gap: 32px;
+    width: 100%;
+    overflow-wrap: break-word;
+}
+
+.footer-container .footer-content h3 {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-container .footer-content .footer-col img {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-container .footer-content .footer-col p:first-child {
+    overflow-wrap: break-word;
+}
+
+.footer-container .footer-content .footer-col p,
+.footer-container .footer-content .footer-col ul {
+    font-size: 13px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-container .footer-col li {
+    transition: color 0.3s ease;
+}
+
+.footer-container .footer-col li:hover {
+    color: #59ca6d;
+}
+
+.footer-container .footer-content .footer-col a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.footer-container .footer-content .footer-col a:hover {
+    color: #59ca6d;
+}
+
+/* maps */
+.footer-map {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 380px;
+}
+
+.footer-map iframe {
+    width: 100%;
+    height: 220px;
+    border: none;
+}
