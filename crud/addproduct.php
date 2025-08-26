@@ -74,58 +74,175 @@
     }
 ?>
 
-<h2>Thêm sản phẩm </h2>
-<form action="addproduct.php" method="post" enctype="multipart/form-data">
-    <label>Product Type:</label>
-    <select name="type">
-        <option value="chuachon">Chưa chọn</option>
-        <option value="tu_lanh">Tủ lạnh</option>
-        <option value="may_giat">Máy giặt</option>
-        <option value="tivi">Tivi</option>
-        <option value="dieu_hoa">Điều hòa</option>
-        <option value="loa">Loa</option>
-    </select>
-    <br><br>
+<!DOCTYPE html>
+<html lang="en">
 
-    <label>Product Name:</label>
-    <input type="text" name="name">
-    <br><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang thêm sản phẩm</title>
 
-    <label>Description:</label>
-    <input type="text" name="description">
-    <br><br>
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-    <label>Price:</label>
-    <input type="text" name="price">
-    <br><br>
+    body {
+        background: #f4f6f9;
+        color: #333;
+    }
 
-    <label>Old Price:</label>
-    <input type="text" name="old_price">
-    <br><br>
+    .container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 
-    <label>Discount percent:</label>
-    <input type="text" name="discount_percent">
-    <br><br>
+    .container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
 
-    <label>Gift:</label>
-    <input type="text" name="gift">
-    <br><br>
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 40px;
+    }
 
-    <label>Rating:</label>
-    <input type="text" name="rating" placeholder="1->5">
-    <br><br>
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 
-    <label>Sold count:</label>
-    <input type="text" name="sold_count">
-    <br><br>
+    .form-item {
+        display: flex;
+        flex-direction: column;
+    }
 
-    <label>Image: </label>
-    <input type="file" name="image">
-    <br><br>
+    .form-item label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #444;
+    }
 
-    <label>Video url: </label>
-    <input type="text" name="video_url" placeholder="e.g: https://www.youtube.com/embed/djegwb8W73k">
+    .form-item input,
+    .form-item select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        width: 100%;
+        transition: all 0.3s;
+    }
 
-    <br><br>
-    <button type="submit" name="btn_Them">Thêm</button>
-</form>
+    .form-item input:focus,
+    .form-item select:focus {
+        border-color: #2980b9;
+        outline: none;
+        box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+    }
+
+    .form-item img {
+        margin-bottom: 8px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+
+    .btn-submit {
+        grid-column: span 2;
+        margin-top: 20px;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        background: #3498db;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        text-align: center;
+    }
+
+    .btn-submit:hover {
+        background: #2980b9;
+    }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Thêm sản phẩm </h2>
+        <form action="addproduct.php" method="post" enctype="multipart/form-data" class="form-grid">
+            <!-- cột trái -->
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Product Type:</label>
+                    <select name="type">
+                        <option value="chuachon">Chưa chọn</option>
+                        <option value="tu_lanh">Tủ lạnh</option>
+                        <option value="may_giat">Máy giặt</option>
+                        <option value="tivi">Tivi</option>
+                        <option value="dieu_hoa">Điều hòa</option>
+                        <option value="loa">Loa</option>
+                    </select>
+                    <br><br>
+
+                    <label>Product Name:</label>
+                    <input type="text" name="name">
+                    <br><br>
+
+                    <label>Description:</label>
+                    <input type="text" name="description">
+                    <br><br>
+
+                    <label>Price:</label>
+                    <input type="text" name="price">
+                    <br><br>
+
+                    <label>Old Price:</label>
+                    <input type="text" name="old_price">
+                    <br><br>
+
+                    <label>Discount percent:</label>
+                    <input type="text" name="discount_percent">
+                    <br><br>
+                </div>
+            </div>
+            <!-- cột phải -->
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Gift:</label>
+                    <input type="text" name="gift">
+                    <br><br>
+
+                    <label>Rating:</label>
+                    <input type="text" name="rating" placeholder="1->5">
+                    <br><br>
+
+                    <label>Sold count:</label>
+                    <input type="text" name="sold_count">
+                    <br><br>
+
+                    <label>Image: </label>
+                    <input type="file" name="image">
+                    <br><br>
+
+                    <label>Video url: </label>
+                    <input type="text" name="video_url" placeholder="e.g: https://www.youtube.com/embed/djegwb8W73k">
+                </div>
+            </div>
+            <button type="submit" name="btn_Them" class="btn-submit">Thêm</button>
+        </form>
+    </div>
+</body>
+
+</html>
