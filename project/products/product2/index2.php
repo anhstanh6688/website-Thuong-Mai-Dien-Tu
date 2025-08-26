@@ -129,6 +129,48 @@
 .close-btn:hover {
     color: #ffdddd;
 }
+
+/* css lọc */
+.filter-bar {
+    margin-bottom: 20px;
+}
+
+.filter-bar input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+    padding: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.filter-bar input:focus {
+    border-color: #007bff;
+}
+
+
+.filter-bar select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+.filter-bar select:focus {
+    border-color: #007bff;
+}
+
+.filter-bar button {
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.filter-bar button:hover {
+    background-color: #d7dde3ff;
+}
 </style>
 
 <body>
@@ -226,17 +268,64 @@
             cả hợp lý
         </p>
 
+        <!-- search + filter -->
+        <form method="GET" class="filter-bar">
+            <!-- theo tên -->
+            <input type="text" name="searchName" placeholder="Tìm theo tên..."
+                value="<?php echo isset($_GET['searchName']) ? $_GET['searchName'] : '' ?>">
+            <!-- theo giá -->
+            <select name="type">
+                <option value="chuachon"
+                    <?php if(isset($_GET["type"]) && $_GET["type"] == "chuachon") echo "selected"; ?>>Chưa chọn</option>
+                <option value="1" <?php if(isset($_GET["type"]) && $_GET["type"] == "1") echo "selected"; ?>>
+                    Dưới 5 triệu
+                </option>
+                <option value="2" <?php if(isset($_GET["type"]) && $_GET["type"] == "2") echo "selected"; ?>>
+                    5 - 10 triệu
+                </option>
+                <option value="3" <?php if(isset($_GET["type"]) && $_GET["type"] == "3") echo "selected"; ?>>
+                    10 - 20 triệu
+                </option>
+                <option value="4" <?php if(isset($_GET["type"]) && $_GET["type"] == "4") echo "selected"; ?>>
+                    Trên 20 triệu
+                </option>
+            </select>
+
+
+            <button type="submit" name="btnTimKiem">Tìm kiếm</button>
+        </form>
+
         <!-- list-products -->
         <div class="product--grid">
             <?php 
-                  include "../../../DB/connect.php";
-                  include "../../../config.php";
+            include "../../../DB/connect.php";
+            include "../../../config.php";
+        
+            if (isset($_GET["btnTimKiem"])) {
+                $type = $_GET["type"];
+                // bấm tìm kiếm
+                $findName = $_GET["searchName"];
+                $sql = "SELECT * FROM sanpham WHERE product_name LIKE '%$findName%' AND product_type = 'may_giat' ";
 
-                  $sql = "SELECT * FROM sanpham WHERE product_type='may_giat' ";
-                  $result = mysqli_query($conn, $sql);
+                if($type == "1") {
+                    $sql .= "AND price < 5000000";
+                }else if($type == "2") {
+                    $sql .= "AND price BETWEEN 5000000 AND 10000000 ";
+                }elseif ($type == "3") {
+                    $sql .= "AND price BETWEEN 10000000 AND 20000000 ";
+                } elseif ($type == "4") {
+                    $sql .= "AND price > 20000000 ";
+                }
+                
+             }else {
+                // mặc định render tủ lạnh
+                $sql = "SELECT * FROM sanpham WHERE product_type='may_giat'";
+            }
 
-                  while($row = mysqli_fetch_array($result)) {
-                ?>
+            $result = mysqli_query($conn, $sql);
+
+            while ($row = mysqli_fetch_array($result)) {
+        ?>
             <div class="product--item">
                 <img width="250px" src="../../images/<?php echo $row["image"]; ?>" alt="Anh dep">
                 <h3><?php echo $row["product_name"] ?></h3>
