@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    // echo "Session member_id: " . ($_SESSION['member_id'] ?? 'chưa có');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +22,10 @@
 </head>
 
 <style>
+:root {
+    --blue-color: #2297ff;
+}
+
 .toggle {
     display: block;
     position: fixed;
@@ -127,6 +136,84 @@
 
 .close-btn:hover {
     color: #ffdddd;
+}
+
+/* css modal */
+.modal {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__inner {
+    width: 400px;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 5px;
+    /* do vướng header nên 2 góc đầu ko radius cần dùng */
+    overflow: hidden;
+    animation: modalShow 0.2s linear;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--blue-color);
+    color: white;
+}
+
+.modal__header h2 {
+    font-weight: 400;
+}
+
+.modal__body {
+    padding: 15px;
+}
+
+#formComment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal__footer {
+    padding: 15px;
+    text-align: center;
+}
+
+.modal__footer button {
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal__footer .btn_comment {
+    background-color: var(--blue-color);
+    color: white;
+}
+
+.hide {
+    display: none;
+}
+
+@keyframes modalShow {
+    from {
+        top: -200px;
+        opacity: 0;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
 }
 </style>
 
@@ -397,100 +484,46 @@
             <div class="comment-section" id="comments">
                 <h3>Đánh giá Tủ lạnh Samsung Inverter 208 lít RT20HAR8DBU/SV</h3>
                 <img src="../../images/5cda8602-33e9-4c85-8c46-a835762ddead.jpg" width="550px" />
-                <div class="comment">
-                    <p class="author">
-                        Thiên An
-                        <span class="verified">
-                            <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
-                        </span>
-                    </p>
-                    <p class="stars">
-                        ⭐⭐⭐⭐⭐
-                        <span class="recommend">
-                            <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
-                            cho bạn bè, người thân
-                        </span>
-                    </p>
-                    <p class="content">
-                        Tủ lạnh chạy rất ok, máy chạy êm, toả ít nhiệt
-                    </p>
-                </div>
+                <!-- danh sách comments -->
+                <?php
+                    $this_id = $_GET['this_id'];
 
-                <div class="comment">
-                    <p class="author">
-                        Jack
-                        <span class="verified">
-                            <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
-                        </span>
-                    </p>
-                    <p class="stars">
-                        ⭐⭐⭐⭐⭐
-                        <span class="recommend">
-                            <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
-                            cho bạn bè, người thân
-                        </span>
-                    </p>
-                    <p class="content">
-                        Tủ lạnh chạy rất ok, máy chạy êm, toả ít nhiệt
-                    </p>
-                </div>
+                    // Lấy tất cả bình luận 
+                    $sql = "SELECT username, rating, comment
+                    FROM binhluan bl 
+                    JOIN thanhvien tv ON bl.id = tv.id 
+                    WHERE bl.product_id = '$this_id'
+                    ORDER BY bl.comment_id DESC";
+                    $result = mysqli_query($conn, $sql);
 
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                ?>
                 <div class="comment">
                     <p class="author">
-                        Trịnh Trần Phương Tuấn
+                        <?php echo $row['username']; ?>
                         <span class="verified">
                             <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
                         </span>
                     </p>
                     <p class="stars">
-                        ⭐⭐⭐⭐⭐
+                        <?php echo $row['rating'] ?>
                         <span class="recommend">
                             <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
                             cho bạn bè, người thân
                         </span>
                     </p>
                     <p class="content">
-                        Tủ lạnh chạy rất ok, máy chạy êm, toả ít nhiệt
+                        <?php echo $row['comment']; ?>
                     </p>
                 </div>
+                <?php
+        }
+    } else {
+        echo "<p>Chưa có bình luận nào.</p>";
+    }
+    ?>
 
-                <div class="comment">
-                    <p class="author">
-                        Thiên An
-                        <span class="verified">
-                            <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
-                        </span>
-                    </p>
-                    <p class="stars">
-                        ⭐⭐⭐⭐⭐
-                        <span class="recommend">
-                            <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
-                            cho bạn bè, người thân
-                        </span>
-                    </p>
-                    <p class="content">
-                        Tủ lạnh chạy rất ok, máy chạy êm, toả ít nhiệt
-                    </p>
-                </div>
-
-                <div class="comment">
-                    <p class="author">
-                        Thiên An
-                        <span class="verified">
-                            <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
-                        </span>
-                    </p>
-                    <p class="stars">
-                        ⭐⭐⭐⭐⭐
-                        <span class="recommend">
-                            <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
-                            cho bạn bè, người thân
-                        </span>
-                    </p>
-                    <p class="content">
-                        Tủ lạnh chạy rất ok, máy chạy êm, toả ít nhiệt
-                    </p>
-                </div>
                 <!-- đánh giá + viết đánh giá -->
                 <div class="btn--rate">
                     <button class="btn btn-watch">Xem 476 đánh giá</button>
@@ -499,6 +532,52 @@
             </div>
         </div>
     </section>
+
+    <!-- modal bình luận -->
+    <div class="modal hide">
+        <div class="modal__inner">
+            <div class="modal__header">
+                <h2>Viết đánh giá sản phẩm</h2>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="modal__body">
+                <form action="../../../crud/addcomment.php" method="post" id="formComment">
+
+                    <!-- ID sản phẩm -->
+                    <input type="hidden" name="product_id" value="<?php echo $_GET['this_id']; ?>">
+                    <input type="hidden" name="redirect" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+
+
+                    <!-- Tên người dùng -->
+                    <p>
+                        Bạn đang bình luận với tên:
+                        <strong>
+                            <?php echo $_SESSION['mySession']; ?>
+                        </strong>
+                    </p>
+
+                    <!-- Đánh giá sao -->
+                    <label for="rating">Đánh giá:</label>
+                    <select id="rating" name="rating" required>
+                        <option value="5">⭐⭐⭐⭐⭐ - Rất tốt</option>
+                        <option value="4">⭐⭐⭐⭐ - Tốt</option>
+                        <option value="3">⭐⭐⭐ - Bình thường</option>
+                        <option value="2">⭐⭐ - Kém</option>
+                        <option value="1">⭐ - Rất tệ</option>
+                    </select>
+
+                    <!-- Nội dung bình luận -->
+                    <label for="comment">Bình luận:</label>
+                    <textarea id="comment" name="comment" rows="4" required></textarea>
+                </form>
+            </div>
+            <div class="modal__footer">
+                <button type="button" class="cancelBtn" name="cancelBtn">Hủy</button>
+                <!-- cách ko cần đưa vào form nhưng vẫn sử dụng được là: form="formComment" -->
+                <button type="submit" class="btn_comment" name="btn_comment" form="formComment">Gửi</button>
+            </div>
+        </div>
+    </div>
 
     <!-- slider ảnh -->
     <section class="promo-slider">
@@ -753,6 +832,20 @@ function closeChatbox() {
     toggleElement.style.display = "block"
     chatboxElement.style.display = "none"
 }
+
+// modal
+let btnOpen = document.querySelector(".btn.btn-write");
+let modal = document.querySelector(".modal");
+let iconBtn = document.querySelector(".modal__header i");
+let btnClose = document.querySelector(".cancelBtn");
+
+function toggleModal() {
+    modal.classList.toggle('hide')
+}
+
+btnOpen.addEventListener('click', toggleModal)
+btnClose.addEventListener('click', toggleModal)
+iconBtn.addEventListener('click', toggleModal)
 </script>
 
 </html>

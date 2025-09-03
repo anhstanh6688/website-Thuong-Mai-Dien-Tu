@@ -62,9 +62,15 @@
             $image = $_FILES["image"]["name"]; 
             $image_tmp_name = $_FILES["image"]["tmp_name"];
             move_uploaded_file($image_tmp_name, '../project/images/' . $image); 
+
+
+
+
             $sql = "INSERT INTO sanpham(product_type, product_name, description, price, old_price, discount_percent, gift, rating, sold_count, image, video_url)
                     VALUES ('$type', '$name', '$description', '$price', '$old_price', '$discount_percent', '$gift', '$rating', '$sold_count', '$image', '$video_url') "; 
+                    
             $result = mysqli_query($conn, $sql);
+
             if ($result) {
                 echo "<script>alert('Thêm sản phẩm thành công !');</script>";
             } else {

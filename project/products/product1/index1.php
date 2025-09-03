@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 
 <head>
     <meta charset="UTF-8" />
@@ -18,6 +23,77 @@
 </head>
 
 <style>
+.list-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    cursor: pointer;
+}
+
+header {
+    margin-bottom: -80px;
+}
+
+/* drop Login/Logout & Shopping cart  */
+header .item--dropdown {
+    position: relative;
+}
+
+header .item--dropdown>ul {
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    top: 100%;
+    left: -15px;
+    width: 170px;
+    display: none;
+    z-index: 999;
+    padding: 0;
+}
+
+header .item--dropdown:hover>ul {
+    display: block;
+}
+
+header .item--dropdown>ul>li {
+    padding: 5px 10px;
+    text-align: left;
+}
+
+header .item--dropdown>ul>li:hover {
+    background-color: #f5f5f5;
+}
+
+.item--dropdown a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* breakcrumb */
+.breadcrumb {
+    background: #ffffff;
+    padding: 8px 20px;
+    font-size: 20px;
+    margin: 0;
+}
+
+.breadcrumb-links {
+    font-size: 18px;
+}
+
+.breadcrumb-links a {
+    color: #6c757d;
+    text-decoration: none;
+    margin-right: 8px;
+    margin-top: 10px;
+
+}
+
+
+/* chatbox */
 .toggle {
     display: block;
     position: fixed;
@@ -199,53 +275,8 @@
     </div>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="nav">
-                <div class="logo">
-                    <img src="../../images/d936cdcc28e1f6d50c8b30eef7255d3d.png" />
-                </div>
-
-                <div class="menu">
-                    <div class="menu_list">
-                        <a href="../../../trangchu/index.php">TRANG CHỦ</a>
-                    </div>
-
-                    <div class="menu_list dropdown">
-                        <a href="#">GIỚI THIỆU</a>
-                        <i class="fa-solid fa-angle-down"></i>
-                        <ul>
-                            <li><a href="#">Về chúng tôi</a></li>
-                            <li><a href="#">Đội ngũ</a></li>
-                            <li><a href="#">Lịch sử phát triển</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="menu_list">
-                        <a href="#products">
-                            <a href="../../../trangchu/index.php#products">SẢN PHẨM</a>
-                        </a>
-                    </div>
-
-                    <div class="menu_list dropdown">
-                        TIN TỨC
-                        <i class="fa-solid fa-angle-down"></i>
-                        <ul>
-                            <li><a href="#">Tin khuyến mãi</a></li>
-                            <li><a href="#">Tin công nghệ</a></li>
-                            <li><a href="#">Blog chia sẻ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="menu_list">
-                        <a href="#subscribe">
-                            <a href="../../index.html#subscribe">LIÊN HỆ</a>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php  include "../../../header.php"; ?>
+    <br><br>
 
     <!-- Breadcrumb -->
     <section class="breadcrumb">

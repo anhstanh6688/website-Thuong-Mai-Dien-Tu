@@ -10,16 +10,29 @@
         $confirmPassword = $_POST["confirmPassword"];
         $level = 2;
 
-        if($password !== $confirmPassword){
+        if(empty($username) || empty($password) || empty($confirmPassword)){
+            echo "<script>alert('Vui lòng nhập đầy đủ thông tin!');</script>";
+        } elseif(strlen($username) < 4){
+            echo "<script>alert('Tên đăng nhập phải từ 4 ký tự trở lên!');</script>";
+        } elseif(strlen($password) < 6){
+            echo "<script>alert('Mật khẩu phải từ 6 ký tự trở lên!');</script>";
+        } elseif($password !== $confirmPassword){
             echo "<script>alert('Mật khẩu xác nhận không khớp!');</script>";
-        }else {
-            $sql = "INSERT INTO thanhvien (id ,username, password, level)
-                    VALUES ('$id' ,'$username', '$password', '$level')";
-            mysqli_query($conn, $sql);
+        } else {
+            // Check username trùng
+            $check = "SELECT * FROM thanhvien WHERE username='$username'";
+            $result = mysqli_query($conn, $check);
+            if(mysqli_num_rows($result) > 0){
+                echo "<script>alert('Tên đăng nhập đã tồn tại!');</script>";
+            } else {
+                $sql = "INSERT INTO thanhvien (id, username, password, level)
+                        VALUES ('$id', '$username', '$hashedPassword', '$level')";
+                mysqli_query($conn, $sql);
 
-            // đăng ký xong chuyển luôn tới trang đăng nhập login.php
-            header("location:" .BASE_URL . "auth/login.php");
+                header("location:" . BASE_URL . "auth/login.php");
+                exit();
         }
+    }
     }
 
 ?>

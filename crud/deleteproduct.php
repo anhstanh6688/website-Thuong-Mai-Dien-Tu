@@ -34,7 +34,7 @@ if (mysqli_query($conn, $sql)) {
             $backPage = "/project/products/product5/index5.php";
             break;
         default:
-            $backPage = "/trangchu/index.php"; // fallback
+            $backPage = "/trangchu/index.php"; 
     }
 
     header("Location: " . BASE_URL . $backPage);

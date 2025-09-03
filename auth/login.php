@@ -81,19 +81,25 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        // check
-        $sql = "SELECT * FROM thanhvien WHERE username = '$username' AND password = '$password' ";
-        $result = mysqli_query($conn, $sql);
-        
-        if(mysqli_num_rows($result) == 1) {
-            $_SESSION["mySession"] = $username;
-            header("location: " .BASE_URL . "trangchu/index.php");
-        }else {
-            echo "Tài khoản hoặc mật khẩu sai !";
+        if(empty($username) || empty($password)){
+            echo "<script>alert('Vui lòng nhập đầy đủ thông tin!');</script>";
+        } else {
+            // check
+            $sql = "SELECT * FROM thanhvien WHERE username = '$username' AND password = '$password' ";
+            $result = mysqli_query($conn, $sql);
+            
+            if(mysqli_num_rows($result) == 1) {
+                $row = mysqli_fetch_assoc($result);
+                $_SESSION['member_id'] = $row['id'];
+                $_SESSION["mySession"] = $username;
+                // echo "Debug: ".$_SESSION['member_id']; // test
+                // exit;
+                header("location: " .BASE_URL . "trangchu/index.php");
+            }else {
+                echo "<script>alert('Tài khoản hoặc mật khẩu sai');</script>";
+            }
         }
-
     }
-
 ?>
 
 <body>
