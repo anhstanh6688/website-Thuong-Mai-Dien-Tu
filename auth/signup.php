@@ -92,10 +92,28 @@
         border-color: #007bff;
     }
 
-    .container button {
-        display: block;
-        width: 100px;
+    .btn {
         margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .btn .btnDangNhap {
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        background-color: #6FEC98;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .btn .btnDangNhap:hover {
+        background-color: #05eb52ff;
+    }
+
+    .btn button {
         padding: 10px;
         background: #007bff;
         color: white;
@@ -105,7 +123,7 @@
         font-size: 16px;
     }
 
-    .container button:hover {
+    .btn button:hover {
         background: #0056b3;
     }
     </style>
@@ -126,7 +144,12 @@
             <label>Confirm password</label>
             <input type="password" name="confirmPassword">
             <br>
-            <button type="submit" name="dangky">Đăng ký</button>
+            <div class="btn">
+                <button type="submit" name="dangky">Đăng ký</button>
+                <div class="dangnhap">
+                    <a href="login.php" class="btnDangNhap">Đăng nhập</a>
+                </div>
+            </div>
         </form>
     </div>
 </body>

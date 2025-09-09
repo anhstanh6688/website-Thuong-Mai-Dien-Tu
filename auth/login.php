@@ -52,10 +52,28 @@
         border-color: #007bff;
     }
 
-    .container button {
-        display: block;
-        width: 100px;
+    .btn {
         margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .btn .btnDangKy {
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+        background-color: #6FEC98;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .btn .btnDangKy:hover {
+        background-color: #05eb52ff;
+    }
+
+    .btn button {
         padding: 10px;
         background: #007bff;
         color: white;
@@ -65,7 +83,7 @@
         font-size: 16px;
     }
 
-    .container button:hover {
+    .btn button:hover {
         background: #0056b3;
     }
     </style>
@@ -113,7 +131,12 @@
             <label>Password</label>
             <input type="password" name="password">
             <br>
-            <button type="submit" name="dangnhap">Đăng nhập</button>
+            <div class="btn">
+                <button type="submit" name="dangnhap">Đăng nhập</button>
+                <div class="dangky">
+                    <a href="signup.php" class="btnDangKy">Đăng ký</a>
+                </div>
+            </div>
         </form>
     </div>
 </body>

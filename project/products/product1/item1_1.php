@@ -217,6 +217,13 @@
         opacity: 1;
     }
 }
+
+
+#add-to-cart-form input[type="text"] {
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
+}
 </style>
 
 <body>
@@ -339,10 +346,23 @@
             <div class="action-button">
                 <!-- Dòng 1: Giỏ hàng + Giá tiền -->
                 <div class="cart-row">
-                    <a href="#" class="btn btn-cart" id="add" onclick="handleShoppingCart()">
+                    <!-- <a href="../../../giohang/cart.php?action=add" class="btn btn-cart" id="add"
+                        onclick="handleShoppingCart()">
                         <img src="../../images/shopping-cart.png" width="40px" />
                         Thêm vào giỏ
-                    </a>
+                    </a> -->
+                    <?php
+                    $this_id = $_GET["this_id"]; 
+
+                    $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                    <form id="add-to-cart-form" action="../../../giohang/cart.php?action=add" method="POST">
+                        <input type="text" value="1" name="quantity[<?=$row['product_id']?>]" size="2" /><br />
+                        <input type="submit" class="btn btn-cart" id="add" value="Thêm vào giỏ" />
+                    </form>
+                    <?php } ?>
 
                     <?php 
               include "../../../DB/connect.php";
