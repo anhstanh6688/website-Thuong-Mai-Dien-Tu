@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    // echo "Session member_id: " . ($_SESSION['member_id'] ?? 'chưa có');
+session_start();
+// echo "Session member_id: " . ($_SESSION['member_id'] ?? 'chưa có');
 ?>
 
 <!DOCTYPE html>
@@ -22,199 +22,239 @@
 </head>
 
 <style>
-:root {
-    --blue-color: #2297ff;
-}
-
-.toggle {
-    display: block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-
-}
-
-.toggle:hover {
-    transform: scale(1.1);
-}
-
-.toggle img {
-    border-radius: 5px;
-    height: 50px;
-    width: 50px;
-    object-fit: cover;
-}
-
-.chatbox {
-    display: none;
-    width: 300px;
-    height: 400px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
+    :root {
+        --blue-color: #2297ff;
     }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+    .toggle {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
 
-.chatbox-header {
-    background: #4caf50;
-    color: #fff;
-    padding: 10px;
-    font-weight: bold;
-}
-
-.chatbox-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 14px;
-}
-
-.message {
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 6px;
-    max-width: 80%;
-}
-
-.message.bot {
-    background: #f1f1f1;
-}
-
-
-.chatbox-footer {
-    display: flex;
-    border-top: 1px solid #ddd;
-}
-
-.chatbox-footer input {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    font-size: 14px;
-}
-
-.chatbox-footer button {
-    background: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.message.user {
-    background: #dcf8c6;
-    /* tự động căn chỉnh ra trái */
-    margin-left: auto;
-    margin-bottom: 185px;
-}
-
-.close-btn {
-    font-size: 13px;
-    float: right;
-    right: 5px;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.close-btn:hover {
-    color: #ffdddd;
-}
-
-/* css modal */
-.modal {
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal__inner {
-    width: 400px;
-    position: relative;
-    top: 50%;
-    margin: 0 auto;
-    background: white;
-    border-radius: 5px;
-    /* do vướng header nên 2 góc đầu ko radius cần dùng */
-    overflow: hidden;
-    animation: modalShow 0.2s linear;
-}
-
-.modal__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background: var(--blue-color);
-    color: white;
-}
-
-.modal__header h2 {
-    font-weight: 400;
-}
-
-.modal__body {
-    padding: 15px;
-}
-
-#formComment {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.modal__footer {
-    padding: 15px;
-    text-align: center;
-}
-
-.modal__footer button {
-    padding: 10px 20px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal__footer .btn_comment {
-    background-color: var(--blue-color);
-    color: white;
-}
-
-.hide {
-    display: none;
-}
-
-@keyframes modalShow {
-    from {
-        top: -200px;
-        opacity: 0;
     }
 
-    to {
+    .toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .toggle img {
+        border-radius: 5px;
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+    }
+
+    .chatbox {
+        display: none;
+        width: 300px;
+        height: 400px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .chatbox-header {
+        background: #4caf50;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .chatbox-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        font-size: 14px;
+    }
+
+    .message {
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 6px;
+        max-width: 80%;
+    }
+
+    .message.bot {
+        background: #f1f1f1;
+    }
+
+
+    .chatbox-footer {
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
+
+    .chatbox-footer input {
+        flex: 1;
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .chatbox-footer button {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .message.user {
+        background: #dcf8c6;
+        /* tự động căn chỉnh ra trái */
+        margin-left: auto;
+        margin-bottom: 185px;
+    }
+
+    .close-btn {
+        font-size: 13px;
+        float: right;
+        right: 5px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .close-btn:hover {
+        color: #ffdddd;
+    }
+
+    /* css modal */
+    .modal {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal__inner {
+        width: 400px;
+        position: relative;
         top: 50%;
-        opacity: 1;
+        margin: 0 auto;
+        background: white;
+        border-radius: 5px;
+        /* do vướng header nên 2 góc đầu ko radius cần dùng */
+        overflow: hidden;
+        animation: modalShow 0.2s linear;
     }
-}
+
+    .modal__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: var(--blue-color);
+        color: white;
+    }
+
+    .modal__header h2 {
+        font-weight: 400;
+    }
+
+    .modal__body {
+        padding: 15px;
+    }
+
+    #formComment {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal__footer {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .modal__footer button {
+        padding: 10px 20px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .modal__footer .btn_comment {
+        background-color: var(--blue-color);
+        color: white;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    @keyframes modalShow {
+        from {
+            top: -200px;
+            opacity: 0;
+        }
+
+        to {
+            top: 50%;
+            opacity: 1;
+        }
+    }
+
+    /* css cart */
+
+    #add-to-cart-form {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    /* ô nhập số lượng */
+    #add-to-cart-form input[type="text"] {
+        width: 60px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 16px;
+        outline: none;
+    }
+
+    /* nút thêm vào giỏ */
+    #add-to-cart-form .btn.btn-cart {
+        background: var(--blue-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 170px;
+    }
+
+    #add-to-cart-form .btn.btn-cart:hover {
+        background: #4561efff;
+    }
 </style>
 
 <body>
@@ -292,20 +332,20 @@
 
     <!-- Breadcrumb -->
     <section class="breadcrumb">
-        <?php 
-              include "../../../DB/connect.php";
-              include "../../../config.php";
-              $this_id = $_GET["this_id"]; 
+        <?php
+        include "../../../DB/connect.php";
+        include "../../../config.php";
+        $this_id = $_GET["this_id"];
 
-              $sql = "SELECT * FROM sanpham WHERE product_id = $this_id";
-              $result = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM sanpham WHERE product_id = $this_id";
+        $result = mysqli_query($conn, $sql);
 
-              while($row = mysqli_fetch_array($result)) {
-                ?>
-        <div class="breadcrumb-links">
-            <a href="../product2/index2.php">Máy giặt</a> /
-            <span><?php echo $row["product_name"]; ?></span>
-        </div>
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+            <div class="breadcrumb-links">
+                <a href="../product2/index2.php">Máy giặt</a> /
+                <span><?php echo $row["product_name"]; ?></span>
+            </div>
         <?php  } ?>
     </section>
 
@@ -313,78 +353,93 @@
     <section class="product">
         <div class="product-section">
             <!-- mock link YT -->
-            <?php 
-              include "../../../DB/connect.php";
-              include "../../../config.php";
-              $this_id = $_GET["this_id"]; 
+            <?php
+            include "../../../DB/connect.php";
+            include "../../../config.php";
+            $this_id = $_GET["this_id"];
 
-              $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
-              $result = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
+            $result = mysqli_query($conn, $sql);
 
-              while($row = mysqli_fetch_array($result)) {
-                ?>
-            <div class="video-container">
-                <iframe width="560" height="315" src="<?php echo $row['video_url']; ?>"
-                    title="<?php echo $row['product_name']; ?>" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <?php }?>
+            while ($row = mysqli_fetch_array($result)) {
+            ?>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="<?php echo $row['video_url']; ?>"
+                        title="<?php echo $row['product_name']; ?>" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            <?php } ?>
 
 
             <!-- action buttons -->
             <div class="action-button">
                 <!-- Dòng 1: Giỏ hàng + Giá tiền -->
                 <div class="cart-row">
-                    <a href="#" class="btn btn-cart" id="add" onclick="handleShoppingCart()">
+                    <!-- <a href="#" class="btn btn-cart" id="add" onclick="handleShoppingCart()">
                         <img src="../../images/shopping-cart.png" width="40px" />
                         Thêm vào giỏ
-                    </a>
+                    </a> -->
 
-                    <?php 
-              include "../../../DB/connect.php";
-              include "../../../config.php";
-              $this_id = $_GET["this_id"]; 
+                    <?php
+                    $this_id = $_GET["this_id"];
 
-              $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
-              $result = mysqli_query($conn, $sql);
+                    $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                        <form id="add-to-cart-form" action="../../../giohang/cart.php?action=add" method="POST">
+                            <input type="text" value="1" name="quantity[<?= $row['product_id'] ?>]" size="2" /><br />
+                            <input type="submit" class="btn btn-cart" id="add" value="Thêm vào giỏ" />
+                        </form>
+                    <?php } ?>
 
-              while($row = mysqli_fetch_array($result)) {
-                ?>
-                    <div class="price-box">
-                        <span class="label">Giá tiền:</span>
-                        <a href="#" class="price"><?php echo number_format($row['price'], 0, ',', '.'); ?>đ</a>
-                    </div>
+
+
+                    <?php
+                    include "../../../DB/connect.php";
+                    include "../../../config.php";
+                    $this_id = $_GET["this_id"];
+
+                    $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
+                    $result = mysqli_query($conn, $sql);
+
+                    while ($row = mysqli_fetch_array($result)) {
+                    ?>
+                        <div class="price-box">
+                            <span class="label">Giá tiền:</span>
+                            <a href="#" class="price"><?php echo number_format($row['price'], 0, ',', '.'); ?>đ</a>
+                        </div>
                 </div>
-                <?php  } ?>
+            <?php  } ?>
 
-                <!-- Dòng 2: Like - Share - Comment -->
-                <div class="action-row">
-                    <!-- left -->
-                    <div class="left-actions">
-                        <a href="#" class="btn btn-like" id="like" onclick="handleLike()">
-                            <img src="../../images/like.png" width="30px" />
-                            Thích
-                        </a>
-                        <a href="#" class="btn btn-share" id="share" onclick="handleShare()">
-                            <img src="../../images/send.png" width="30px" />
-                            Chia sẻ
-                        </a>
-                    </div>
-                    <!-- right -->
-                    <div class="right-actions"></div>
-                    <a href="#comments" class="btn btn-comment">
-                        <img src="../../images/comments.png" width="30px" />
-                        Bình luận
+            <!-- Dòng 2: Like - Share - Comment -->
+            <div class="action-row">
+                <!-- left -->
+                <div class="left-actions">
+                    <a href="#" class="btn btn-like" id="like" onclick="handleLike()">
+                        <img src="../../images/like.png" width="30px" />
+                        Thích
+                    </a>
+                    <a href="#" class="btn btn-share" id="share" onclick="handleShare()">
+                        <img src="../../images/send.png" width="30px" />
+                        Chia sẻ
                     </a>
                 </div>
-                <img src="../../images/b8fb7e01422e060162a6ba939da5e8e5.png" width="588px" />
+                <!-- right -->
+                <div class="right-actions"></div>
+                <a href="#comments" class="btn btn-comment">
+                    <img src="../../images/comments.png" width="30px" />
+                    Bình luận
+                </a>
+            </div>
+            <img src="../../images/b8fb7e01422e060162a6ba939da5e8e5.png" width="588px" />
             </div>
 
             <!-- Thông số kỹ thuật -->
             <div class="specs-table">
-                <?php 
+                <?php
                 include "../../../DB/connect.php";
                 include "../../../config.php";
                 $this_id = $_GET["this_id"];
@@ -393,89 +448,89 @@
                         INNER JOIN sanpham sp ON sp.product_id = ps.product_id 
                         WHERE sp.product_id = '$this_id' ";
                 $result = mysqli_query($conn, $sql);
-                while($row = mysqli_fetch_array($result)) {
-                 ?>
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
 
-                <div class="row">
-                    <div class="label">Kiểu tủ:</div>
-                    <div class="value">
-                        <a class="people"><?php echo $row["kieu_tu"]; ?></a>
+                    <div class="row">
+                        <div class="label">Kiểu tủ:</div>
+                        <div class="value">
+                            <a class="people"><?php echo $row["kieu_tu"]; ?></a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label mouse">Dung tích tổng:</div>
-                    <div class="value">
-                        <a class="people"><?php echo $row["dung_tich_tong"]; ?></a>
+                    <div class="row">
+                        <div class="label mouse">Dung tích tổng:</div>
+                        <div class="value">
+                            <a class="people"><?php echo $row["dung_tich_tong"]; ?></a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Dung tích sử dụng:</div>
-                    <div class="value">
-                        <a class="people"><?php echo $row["dung_tich_su_dung"]; ?></a>
+                    <div class="row">
+                        <div class="label">Dung tích sử dụng:</div>
+                        <div class="value">
+                            <a class="people"><?php echo $row["dung_tich_su_dung"]; ?></a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Dung tích ngăn đá:</div>
-                    <div class="value">
-                        <?php echo $row["dung_tich_ngan_da"]; ?>
+                    <div class="row">
+                        <div class="label">Dung tích ngăn đá:</div>
+                        <div class="value">
+                            <?php echo $row["dung_tich_ngan_da"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Dung tích ngăn lạnh:</div>
-                    <div class="value">
-                        <?php echo $row["dung_tich_ngan_lanh"]; ?>
+                    <div class="row">
+                        <div class="label">Dung tích ngăn lạnh:</div>
+                        <div class="value">
+                            <?php echo $row["dung_tich_ngan_lanh"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Chất liệu cửa tủ lạnh:</div>
-                    <div class="value">
-                        <?php echo $row["chat_lieu_cua"]; ?>
+                    <div class="row">
+                        <div class="label">Chất liệu cửa tủ lạnh:</div>
+                        <div class="value">
+                            <?php echo $row["chat_lieu_cua"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Chất liệu khay ngăn lạnh:</div>
-                    <div class="value">
-                        <?php echo $row["chat_lieu_khay"]; ?>
+                    <div class="row">
+                        <div class="label">Chất liệu khay ngăn lạnh:</div>
+                        <div class="value">
+                            <?php echo $row["chat_lieu_khay"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Chất liệu ống dẫn gas, dàn lạnh:</div>
-                    <div class="value">
-                        <?php echo $row["chat_lieu_ong"]; ?>
+                    <div class="row">
+                        <div class="label">Chất liệu ống dẫn gas, dàn lạnh:</div>
+                        <div class="value">
+                            <?php echo $row["chat_lieu_ong"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Năm ra mắt:</div>
-                    <div class="value">
-                        <?php echo $row["nam_ra_mat"]; ?>
+                    <div class="row">
+                        <div class="label">Năm ra mắt:</div>
+                        <div class="value">
+                            <?php echo $row["nam_ra_mat"]; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="label">Sản xuất tại:</div>
-                    <div class="value">
-                        <?php echo $row["san_xuat_tai"]; ?>
+                    <div class="row">
+                        <div class="label">Sản xuất tại:</div>
+                        <div class="value">
+                            <?php echo $row["san_xuat_tai"]; ?>
+                        </div>
                     </div>
-                </div>
-                <!-- HASD CODE -->
-                <div class="row">
-                    <p>Mức tiêu thụ điện năng</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
+                    <!-- HASD CODE -->
+                    <div class="row">
+                        <p>Mức tiêu thụ điện năng</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
 
-                <div class="row">
-                    <p>Công nghệ bảo quản và làm lạnh</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
+                    <div class="row">
+                        <p>Công nghệ bảo quản và làm lạnh</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
 
-                <div class="row">
-                    <p>Tiện ích</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
+                    <div class="row">
+                        <p>Tiện ích</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
 
-                <div class="row">
-                    <p>Thông tin lắp đặt</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
+                    <div class="row">
+                        <p>Thông tin lắp đặt</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
                 <?php } ?>
             </div>
 
@@ -486,43 +541,43 @@
                 <img src="../../images/5cda8602-33e9-4c85-8c46-a835762ddead.jpg" width="550px" />
                 <!-- danh sách comments -->
                 <?php
-                    $this_id = $_GET['this_id'];
+                $this_id = $_GET['this_id'];
 
-                    // Lấy tất cả bình luận 
-                    $sql = "SELECT username, rating, comment
+                // Lấy tất cả bình luận 
+                $sql = "SELECT username, rating, comment
                     FROM binhluan bl 
                     JOIN thanhvien tv ON bl.id = tv.id 
                     WHERE bl.product_id = '$this_id'
                     ORDER BY bl.comment_id DESC";
-                    $result = mysqli_query($conn, $sql);
+                $result = mysqli_query($conn, $sql);
 
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <div class="comment">
-                    <p class="author">
-                        <?php echo $row['username']; ?>
-                        <span class="verified">
-                            <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
-                        </span>
-                    </p>
-                    <p class="stars">
-                        <?php echo $row['rating'] ?>
-                        <span class="recommend">
-                            <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
-                            cho bạn bè, người thân
-                        </span>
-                    </p>
-                    <p class="content">
-                        <?php echo $row['comment']; ?>
-                    </p>
-                </div>
+                        <div class="comment">
+                            <p class="author">
+                                <?php echo $row['username']; ?>
+                                <span class="verified">
+                                    <img src="../../images/check.png" width="24px" /> Đã mua tại ĐMX
+                                </span>
+                            </p>
+                            <p class="stars">
+                                <?php echo $row['rating'] ?>
+                                <span class="recommend">
+                                    <img src="../../images/heart.png" width="24px" />Sẽ giới thiệu
+                                    cho bạn bè, người thân
+                                </span>
+                            </p>
+                            <p class="content">
+                                <?php echo $row['comment']; ?>
+                            </p>
+                        </div>
                 <?php
-        }
-    } else {
-        echo "<p>Chưa có bình luận nào.</p>";
-    }
-    ?>
+                    }
+                } else {
+                    echo "<p>Chưa có bình luận nào.</p>";
+                }
+                ?>
 
                 <!-- đánh giá + viết đánh giá -->
                 <div class="btn--rate">
@@ -654,19 +709,19 @@
             <div class="related-products--top">
                 <h3>Sản phẩm đã xem</h3>
                 <div class="product-list">
-                    <?php 
-                  $sql = "SELECT * FROM sanpham 
+                    <?php
+                    $sql = "SELECT * FROM sanpham 
                           ORDER BY RAND() LIMIT 3";
-                  $result = mysqli_query($conn, $sql);
-                  while($row = mysqli_fetch_array($result)) {
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($result)) {
                     ?>
 
-                    <div class="product-item">
-                        <img style="object-fit: cover;" src="../../images/<?php echo $row["image"]; ?>" alt="San pham">
-                        <p class="title--product">
-                            <?php echo $row["product_name"]; ?>
-                        </p>
-                    </div>
+                        <div class="product-item">
+                            <img style="object-fit: cover;" src="../../images/<?php echo $row["image"]; ?>" alt="San pham">
+                            <p class="title--product">
+                                <?php echo $row["product_name"]; ?>
+                            </p>
+                        </div>
                     <?php } ?>
                 </div>
             </div>
@@ -677,27 +732,27 @@
     <section class="related-products">
         <h2>Sản phẩm thường mua cùng</h2>
         <div class="related-list">
-            <?php 
-                include "../../../DB/connect.php";
-                include "../../../config.php";
+            <?php
+            include "../../../DB/connect.php";
+            include "../../../config.php";
 
-                $sql = "SELECT * FROM sanpham 
+            $sql = "SELECT * FROM sanpham 
                         ORDER BY RAND() LIMIT 5";
-                $result = mysqli_query($conn, $sql);
-                while($row = mysqli_fetch_array($result)) {
-                     ?>
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_array($result)) {
+            ?>
 
-            <div class="item">
-                <img src="../../../project/images/<?php echo $row["image"]; ?>" alt="Anh dep">
-                <p class="name"> <?php echo $row["product_name"]; ?></p>
-                <p class="price"><?php echo $row["price"];?>
-                    <del style="font-size: 10px; color: #666; font-weight: 300;"><?php echo $row["old_price"] ?> </del>
-                </p>
-                <div style="font-size: 13px; color: #666; margin-top: 5px; float: left">
-                    ⭐ <?php echo $row["rating"]; ?> • Đã bán <?php echo $row["sold_count"]; ?>
+                <div class="item">
+                    <img src="../../../project/images/<?php echo $row["image"]; ?>" alt="Anh dep">
+                    <p class="name"> <?php echo $row["product_name"]; ?></p>
+                    <p class="price"><?php echo $row["price"]; ?>
+                        <del style="font-size: 10px; color: #666; font-weight: 300;"><?php echo $row["old_price"] ?> </del>
+                    </p>
+                    <div style="font-size: 13px; color: #666; margin-top: 5px; float: left">
+                        ⭐ <?php echo $row["rating"]; ?> • Đã bán <?php echo $row["sold_count"]; ?>
+                    </div>
                 </div>
-            </div>
-            <?php }?>
+            <?php } ?>
         </div>
     </section>
 
@@ -790,62 +845,62 @@
 </body>
 
 <script>
-//Sự kiện click Like-Share-Add
-function handleLike() {
-    alert("Like sản phẩm này thành công !");
-    const likeBtn = document.getElementById("like");
-    likeBtn.innerHTML = `
+    //Sự kiện click Like-Share-Add
+    function handleLike() {
+        alert("Like sản phẩm này thành công !");
+        const likeBtn = document.getElementById("like");
+        likeBtn.innerHTML = `
         <img src="../../images/like.png" width="30px" />
         Đã like
       `;
-}
+    }
 
-function handleShare() {
-    alert("Share sản phẩm này thành công !");
-    const likeBtn = document.getElementById("share");
-    likeBtn.innerHTML = `
+    function handleShare() {
+        alert("Share sản phẩm này thành công !");
+        const likeBtn = document.getElementById("share");
+        likeBtn.innerHTML = `
         <img src="../../images/send.png" width="30px" />
         Đã share
       `;
-}
+    }
 
-function handleShoppingCart() {
-    alert("Thêm vào giỏ hàng thành công !");
-    const likeBtn = document.getElementById("add");
-    likeBtn.innerHTML = `
+    function handleShoppingCart() {
+        alert("Thêm vào giỏ hàng thành công !");
+        const likeBtn = document.getElementById("add");
+        likeBtn.innerHTML = `
         <img src="../../images/shopping-cart.png" width="40px" />
         Đã thêm vào giỏ
       `;
-}
+    }
 </script>
 
 <script>
-const toggleElement = document.getElementById("toggle");
-const chatboxElement = document.getElementById("chatbox")
+    const toggleElement = document.getElementById("toggle");
+    const chatboxElement = document.getElementById("chatbox")
 
-function handleClick() {
-    chatboxElement.style.display = "block";
-    toggleElement.style.display = "none";
-}
+    function handleClick() {
+        chatboxElement.style.display = "block";
+        toggleElement.style.display = "none";
+    }
 
-function closeChatbox() {
-    toggleElement.style.display = "block"
-    chatboxElement.style.display = "none"
-}
+    function closeChatbox() {
+        toggleElement.style.display = "block"
+        chatboxElement.style.display = "none"
+    }
 
-// modal
-let btnOpen = document.querySelector(".btn.btn-write");
-let modal = document.querySelector(".modal");
-let iconBtn = document.querySelector(".modal__header i");
-let btnClose = document.querySelector(".cancelBtn");
+    // modal
+    let btnOpen = document.querySelector(".btn.btn-write");
+    let modal = document.querySelector(".modal");
+    let iconBtn = document.querySelector(".modal__header i");
+    let btnClose = document.querySelector(".cancelBtn");
 
-function toggleModal() {
-    modal.classList.toggle('hide')
-}
+    function toggleModal() {
+        modal.classList.toggle('hide')
+    }
 
-btnOpen.addEventListener('click', toggleModal)
-btnClose.addEventListener('click', toggleModal)
-iconBtn.addEventListener('click', toggleModal)
+    btnOpen.addEventListener('click', toggleModal)
+    btnClose.addEventListener('click', toggleModal)
+    iconBtn.addEventListener('click', toggleModal)
 </script>
 
 </html>
