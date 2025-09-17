@@ -229,3 +229,29 @@ input[name="order_click"] {
   display: inline-block;
   color: #fff;
 }
+
+/* Thanh điều hướng */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  background: #3498db;
+  padding: 14px 0;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background: #2980b9;
+  color: #fff;
+}

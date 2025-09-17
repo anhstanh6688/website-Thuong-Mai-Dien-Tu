@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <head>
@@ -23,228 +23,228 @@
 </head>
 
 <style>
-.list-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    cursor: pointer;
-}
-
-header {
-    margin-bottom: -80px;
-}
-
-/* drop Login/Logout & Shopping cart  */
-header .item--dropdown {
-    position: relative;
-}
-
-header .item--dropdown>ul {
-    position: absolute;
-    background-color: white;
-    list-style: none;
-    top: 100%;
-    left: -15px;
-    width: 170px;
-    display: none;
-    z-index: 999;
-    padding: 0;
-}
-
-header .item--dropdown:hover>ul {
-    display: block;
-}
-
-header .item--dropdown>ul>li {
-    padding: 5px 10px;
-    text-align: left;
-}
-
-header .item--dropdown>ul>li:hover {
-    background-color: #f5f5f5;
-}
-
-.item--dropdown a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-/* breakcrumb */
-.breadcrumb {
-    background: #ffffff;
-    padding: 8px 20px;
-    font-size: 20px;
-    margin: 0;
-}
-
-.breadcrumb-links {
-    font-size: 18px;
-}
-
-.breadcrumb-links a {
-    color: #6c757d;
-    text-decoration: none;
-    margin-right: 8px;
-    margin-top: 10px;
-
-}
-
-.toggle {
-    display: block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-
-}
-
-.toggle:hover {
-    transform: scale(1.1);
-}
-
-.toggle img {
-    border-radius: 5px;
-    height: 50px;
-    width: 50px;
-    object-fit: cover;
-}
-
-.chatbox {
-    display: none;
-    width: 300px;
-    height: 400px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
+    .list-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        cursor: pointer;
     }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
+    header {
+        margin-bottom: -80px;
     }
-}
 
-.chatbox-header {
-    background: #4caf50;
-    color: #fff;
-    padding: 10px;
-    font-weight: bold;
-}
+    /* drop Login/Logout & Shopping cart  */
+    header .item--dropdown {
+        position: relative;
+    }
 
-.chatbox-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    font-size: 14px;
-}
+    header .item--dropdown>ul {
+        position: absolute;
+        background-color: white;
+        list-style: none;
+        top: 100%;
+        left: -15px;
+        width: 170px;
+        display: none;
+        z-index: 999;
+        padding: 0;
+    }
 
-.message {
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 6px;
-    max-width: 80%;
-}
+    header .item--dropdown:hover>ul {
+        display: block;
+    }
 
-.message.bot {
-    background: #f1f1f1;
-}
+    header .item--dropdown>ul>li {
+        padding: 5px 10px;
+        text-align: left;
+    }
+
+    header .item--dropdown>ul>li:hover {
+        background-color: #f5f5f5;
+    }
+
+    .item--dropdown a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    /* breakcrumb */
+    .breadcrumb {
+        background: #ffffff;
+        padding: 8px 20px;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .breadcrumb-links {
+        font-size: 18px;
+    }
+
+    .breadcrumb-links a {
+        color: #6c757d;
+        text-decoration: none;
+        margin-right: 8px;
+        margin-top: 10px;
+
+    }
+
+    .toggle {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+    }
+
+    .toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .toggle img {
+        border-radius: 5px;
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+    }
+
+    .chatbox {
+        display: none;
+        width: 300px;
+        height: 400px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .chatbox-header {
+        background: #4caf50;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    .chatbox-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        font-size: 14px;
+    }
+
+    .message {
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 6px;
+        max-width: 80%;
+    }
+
+    .message.bot {
+        background: #f1f1f1;
+    }
 
 
-.chatbox-footer {
-    display: flex;
-    border-top: 1px solid #ddd;
-}
+    .chatbox-footer {
+        display: flex;
+        border-top: 1px solid #ddd;
+    }
 
-.chatbox-footer input {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    font-size: 14px;
-}
+    .chatbox-footer input {
+        flex: 1;
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+    }
 
-.chatbox-footer button {
-    background: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
+    .chatbox-footer button {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
 
-.message.user {
-    background: #dcf8c6;
-    /* tự động căn chỉnh ra trái */
-    margin-left: auto;
-    margin-bottom: 185px;
-}
+    .message.user {
+        background: #dcf8c6;
+        /* tự động căn chỉnh ra trái */
+        margin-left: auto;
+        margin-bottom: 185px;
+    }
 
-.close-btn {
-    font-size: 13px;
-    float: right;
-    right: 5px;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
+    .close-btn {
+        font-size: 13px;
+        float: right;
+        right: 5px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
 
-.close-btn:hover {
-    color: #ffdddd;
-}
+    .close-btn:hover {
+        color: #ffdddd;
+    }
 
-/* css lọc */
-.filter-bar {
-    margin-bottom: 20px;
-}
+    /* css lọc */
+    .filter-bar {
+        margin-bottom: 20px;
+    }
 
-.filter-bar input {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 250px;
-    padding: 8px;
-    outline: none;
-    transition: border-color 0.3s;
-}
+    .filter-bar input {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 250px;
+        padding: 8px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
 
-.filter-bar input:focus {
-    border-color: #007bff;
-}
+    .filter-bar input:focus {
+        border-color: #007bff;
+    }
 
 
-.filter-bar select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s;
-}
+    .filter-bar select {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s;
+    }
 
-.filter-bar select:focus {
-    border-color: #007bff;
-}
+    .filter-bar select:focus {
+        border-color: #007bff;
+    }
 
-.filter-bar button {
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    outline: none;
-    transition: background-color 0.3s ease;
-}
+    .filter-bar button {
+        padding: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s ease;
+    }
 
-.filter-bar button:hover {
-    background-color: #d7dde3ff;
-}
+    .filter-bar button:hover {
+        background-color: #d7dde3ff;
+    }
 </style>
 
 <body>
@@ -272,7 +272,7 @@ header .item--dropdown>ul>li:hover {
     </div>
 
     <!-- Header -->
-    <?php  include "../../../header.php"; ?>
+    <?php include "../../../header.php"; ?>
     <br><br>
 
     <!-- Breadcrumb -->
@@ -305,17 +305,18 @@ header .item--dropdown>ul>li:hover {
             <!-- theo giá -->
             <select name="type">
                 <option value="chuachon"
-                    <?php if(isset($_GET["type"]) && $_GET["type"] == "chuachon") echo "selected"; ?>>Chưa chọn</option>
-                <option value="1" <?php if(isset($_GET["type"]) && $_GET["type"] == "1") echo "selected"; ?>>
+                    <?php if (isset($_GET["type"]) && $_GET["type"] == "chuachon") echo "selected"; ?>>Chưa chọn
+                </option>
+                <option value="1" <?php if (isset($_GET["type"]) && $_GET["type"] == "1") echo "selected"; ?>>
                     Dưới 5 triệu
                 </option>
-                <option value="2" <?php if(isset($_GET["type"]) && $_GET["type"] == "2") echo "selected"; ?>>
+                <option value="2" <?php if (isset($_GET["type"]) && $_GET["type"] == "2") echo "selected"; ?>>
                     5 - 10 triệu
                 </option>
-                <option value="3" <?php if(isset($_GET["type"]) && $_GET["type"] == "3") echo "selected"; ?>>
+                <option value="3" <?php if (isset($_GET["type"]) && $_GET["type"] == "3") echo "selected"; ?>>
                     10 - 20 triệu
                 </option>
-                <option value="4" <?php if(isset($_GET["type"]) && $_GET["type"] == "4") echo "selected"; ?>>
+                <option value="4" <?php if (isset($_GET["type"]) && $_GET["type"] == "4") echo "selected"; ?>>
                     Trên 20 triệu
                 </option>
             </select>
@@ -326,27 +327,26 @@ header .item--dropdown>ul>li:hover {
 
         <!-- list-products -->
         <div class="product--grid">
-            <?php 
+            <?php
             include "../../../DB/connect.php";
             include "../../../config.php";
-        
+
             if (isset($_GET["btnTimKiem"])) {
                 $type = $_GET["type"];
                 // bấm tìm kiếm
                 $findName = $_GET["searchName"];
                 $sql = "SELECT * FROM sanpham WHERE product_name LIKE '%$findName%' AND product_type = 'tivi' ";
 
-                if($type == "1") {
+                if ($type == "1") {
                     $sql .= "AND price < 5000000";
-                }else if($type == "2") {
+                } else if ($type == "2") {
                     $sql .= "AND price BETWEEN 5000000 AND 10000000 ";
-                }elseif ($type == "3") {
+                } elseif ($type == "3") {
                     $sql .= "AND price BETWEEN 10000000 AND 20000000 ";
                 } elseif ($type == "4") {
                     $sql .= "AND price > 20000000 ";
                 }
-                
-             }else {
+            } else {
                 // mặc định render tủ lạnh
                 $sql = "SELECT * FROM sanpham WHERE product_type='tivi'";
             }
@@ -354,41 +354,42 @@ header .item--dropdown>ul>li:hover {
             $result = mysqli_query($conn, $sql);
 
             while ($row = mysqli_fetch_array($result)) {
-        ?>
-            <div class="product--item">
-                <img width="250px" src="../../images/<?php echo $row["image"]; ?>" alt="Anh dep">
-                <h3><?php echo $row["product_name"] ?></h3>
-                <div style="color: red; font-weight: bold; font-size: 16px">
-                    <?php echo number_format($row['price'], 0, ',', '.'); ?>₫
-                </div>
-                <div style="font-size: 13px; margin-top: 4px">
-                    <del style="color: #888">
-                        <?php echo number_format($row['old_price'], 0, ',', '.'); ?>₫
-                    </del>
-                    <span style="color: red; font-weight: bold; margin-left: 5px">
-                        <?php echo $row["discount_percent"]; ?>%
-                    </span>
-                </div>
-                <div style="font-size: 13px; margin-top: 5px; color: #333">
-                    <?php echo $row["gift"]; ?>
-                </div>
-                <div class="rating">
-                    ⭐ <?php echo $row['rating']; ?> • Đã bán <?php echo $row['sold_count']; ?>
-                </div>
-                <br>
-                <a href="../product3/item3_3.php?this_id=<?php echo $row["product_id"]; ?>"
-                    style="display:inline-block; padding:6px 12px; border-radius:5px; font-size:14px; text-decoration:none; font-weight:500; margin:5px; background-color:#007bff; color:#fff;">
-                    Xem chi tiết
-                </a>
-                <a href="../../../CRUD/editproduct.php?this_id=<?php echo $row["product_id"]; ?>"
+            ?>
+                <div class="product--item">
+                    <img width="250px" src="../../images/<?php echo $row["image"]; ?>" alt="Anh dep">
+                    <h3><?php echo $row["product_name"] ?></h3>
+                    <div style="color: red; font-weight: bold; font-size: 16px">
+                        <?php echo number_format($row['price'], 0, ',', '.'); ?>₫
+                    </div>
+                    <div style="font-size: 13px; margin-top: 4px">
+                        <del style="color: #888">
+                            <?php echo number_format($row['old_price'], 0, ',', '.'); ?>₫
+                        </del>
+                        <span style="color: red; font-weight: bold; margin-left: 5px">
+                            <?php echo $row["discount_percent"]; ?>%
+                        </span>
+                    </div>
+                    <div style="font-size: 13px; margin-top: 5px; color: #333">
+                        <?php echo $row["gift"]; ?>
+                    </div>
+                    <div class="rating">
+                        ⭐ <?php echo $row['rating']; ?> • Đã bán <?php echo $row['sold_count']; ?>
+                    </div>
+                    <br>
+                    <a href="../product3/item3_3.php?this_id=<?php echo $row["product_id"]; ?>" style="display:inline-block; 
+                        padding:6px 12px; border-radius:5px; font-size:14px; text-decoration:none; 
+                        font-weight:500; margin:5px; background-color:#007bff; color:#fff;">
+                        Xem chi tiết
+                    </a>
+                    <!-- <a href="../../../CRUD/editproduct.php?this_id=<?php echo $row["product_id"]; ?>"
                     style="display:inline-block; padding:6px 12px; border-radius:5px; font-size:14px; text-decoration:none; font-weight:500; margin:5px; background-color:#ffc107; color:#333;">
                     Sửa
                 </a>
                 <a href="../../../CRUD/deleteproduct.php?this_id=<?php echo $row["product_id"]; ?>"
                     style="display:inline-block; padding:6px 12px; border-radius:5px; font-size:14px; text-decoration:none; font-weight:500; margin:5px; background-color:#dc3545; color:#fff;">
                     Xóa
-                </a>
-            </div>
+                </a> -->
+                </div>
             <?php } ?>
         </div>
     </div>
@@ -482,44 +483,44 @@ header .item--dropdown>ul>li:hover {
 </body>
 
 <script>
-const imageList = [
-    " ../../images/banner5.jpg",
-    " ../../images/banner6.png",
-    " ../../images/banner7.jpg",
-    " ../../images/banner9.jpg",
-];
+    const imageList = [
+        " ../../images/banner5.jpg",
+        " ../../images/banner6.png",
+        " ../../images/banner7.jpg",
+        " ../../images/banner9.jpg",
+    ];
 
-const bannerImg = document.getElementById("bannerImg");
+    const bannerImg = document.getElementById("bannerImg");
 
-// Preload ảnh
-const preloadImages = imageList.map((src) => {
-    const img = new Image();
-    img.src = src;
-    return img;
-});
+    // Preload ảnh
+    const preloadImages = imageList.map((src) => {
+        const img = new Image();
+        img.src = src;
+        return img;
+    });
 
-let currentIndex = 0;
+    let currentIndex = 0;
 
-function changeBanner() {
-    currentIndex = (currentIndex + 1) % imageList.length;
-    bannerImg.src = imageList[currentIndex];
-}
-setInterval(changeBanner, 2000);
+    function changeBanner() {
+        currentIndex = (currentIndex + 1) % imageList.length;
+        bannerImg.src = imageList[currentIndex];
+    }
+    setInterval(changeBanner, 2000);
 </script>
 
 <script>
-const toggleElement = document.getElementById("toggle");
-const chatboxElement = document.getElementById("chatbox")
+    const toggleElement = document.getElementById("toggle");
+    const chatboxElement = document.getElementById("chatbox")
 
-function handleClick() {
-    chatboxElement.style.display = "block";
-    toggleElement.style.display = "none";
-}
+    function handleClick() {
+        chatboxElement.style.display = "block";
+        toggleElement.style.display = "none";
+    }
 
-function closeChatbox() {
-    toggleElement.style.display = "block"
-    chatboxElement.style.display = "none"
-}
+    function closeChatbox() {
+        toggleElement.style.display = "block"
+        chatboxElement.style.display = "none"
+    }
 </script>
 
 </html>

@@ -7,6 +7,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styleCart.css">
+    <style>
+        /* Thanh điều hướng */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            background: #58ade5ff;
+            padding: 14px 0;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: #2980b9;
+            color: #fff;
+        }
+
+        /* CSS nút xóa */
+        .product-delete a {
+            padding: 10px;
+            background-color: #f04040ff;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .product-delete a:hover {
+            background-color: #b22e2eff;
+        }
+
+        /* Nút mặc định */
+        input[type="submit"] {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+        }
+
+        .update_click {
+            margin: 8px 5px;
+        }
+
+        /* Hiệu ứng hover */
+        input[type="submit"]:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body>
@@ -157,7 +219,14 @@
                 <?= $success; ?> . <a href="../trangchu/index.php">Tiếp tục mua hàng</a>
             </div>
         <?php } else { ?>
-            <a href="../trangchu/index.php">Trang chủ</a>
+            <div class="navbar">
+                <a href="../trangchu/index.php">Trang chủ</a>
+                <a href="../project/products/product1/index1.php">Tủ lạnh</a>
+                <a href="../project/products/product2/index2.php">Máy giặt</a>
+                <a href="../project/products/product3/index3.php">Tivi</a>
+                <a href="../project/products/product4/index4.php">Điều hòa</a>
+                <a href="../project/products/product5/index5.php">Loa</a>
+            </div>
             <h1>Giỏ hàng</h1>
             <form id="cart-form" action="cart.php?action=submit" method="POST">
                 <table>
@@ -214,14 +283,19 @@
 
                 </table>
                 <div id="form-button">
-                    <input type="submit" name="update_click" value="Cập nhật" />
+                    <input type="submit" name="update_click" class="update_click" value="Cập nhật" />
                 </div>
                 <hr>
                 <div><label>Người nhận: </label><input type="text" value="" name="name" /></div>
                 <div><label>Điện thoại: </label><input type="text" value="" name="phone" /></div>
                 <div><label>Địa chỉ: </label><input type="text" value="" name="address" /></div>
                 <div><label>Ghi chú: </label><textarea name="note" cols="50" rows="7"></textarea></div>
-                <input type="submit" name="order_click" value="Đặt hàng" />
+                <!-- <input type="submit" name="order_click" class="order_click" value="Đặt hàng" /> -->
+                <a href="thanhtoan.php" class="order_click" style="display:inline-block; padding:10px 18px; margin-top: 5px; background:#3498db; color:#fff; 
+                    border-radius:8px; text-decoration:none; font-weight:600;">
+                    Đặt hàng
+                </a>
+
             </form>
         <?php } ?>
     </div>

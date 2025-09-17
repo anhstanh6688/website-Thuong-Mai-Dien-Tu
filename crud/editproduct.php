@@ -1,49 +1,49 @@
-<?php 
-    include "../DB/connect.php";
-    include "../config.php";
+<?php
+include "../DB/connect.php";
+include "../config.php";
 
-    $this_id = $_GET["this_id"];
+$this_id = $_GET["this_id"];
 
-    $sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
-    $querry = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($querry);
+$sql = "SELECT * FROM sanpham WHERE product_id = '$this_id' ";
+$querry = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($querry);
 
-    if(isset($_POST["btn_Sua"])) {
-        $type = $_POST["type"];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $price = $_POST['price'];
-        $old_price = $_POST['old_price'];
-        $discount_percent = $_POST['discount_percent'];
-        $gift = $_POST['gift'];
-        $rating = $_POST['rating'];
-        $sold_count = $_POST['sold_count'];
-        $video_url = $_POST['video_url'];
+if (isset($_POST["btn_Sua"])) {
+    $type = $_POST["type"];
+    $name = $_POST['name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $old_price = $_POST['old_price'];
+    $discount_percent = $_POST['discount_percent'];
+    $gift = $_POST['gift'];
+    $rating = $_POST['rating'];
+    $sold_count = $_POST['sold_count'];
+    $video_url = $_POST['video_url'];
 
-        
-        $image = $_FILES["image"]["name"]; 
-        $image_tmp_name = $_FILES["image"]["tmp_name"];
-        if($image != "") {
-            move_uploaded_file($image_tmp_name, '../project/images/' . $image); 
-        } else {
-            // giữ lại ảnh cũ
-            $image = $row['image'];
-        }
 
-        // update sản phẩm
-        $sql = "UPDATE sanpham 
-        SET product_type = '$type' ,product_name = '$name', description = '$description', price = '$price', old_price = '$old_price', discount_percent = '$discount_percent', gift = '$gift', 
-        rating = '$rating', sold_count = '$sold_count', image = '$image', video_url = '$video_url'
-        WHERE product_id = '$this_id' ";
-        mysqli_query($conn, $sql);
-
-        // header("location:" . BASE_URL . "/project/products/$type/index1.php");
-        echo "<script>alert('Sửa sản phẩm thành công !');</script>";
-        
+    $image = $_FILES["image"]["name"];
+    $image_tmp_name = $_FILES["image"]["tmp_name"];
+    if ($image != "") {
+        move_uploaded_file($image_tmp_name, '../project/images/' . $image);
+    } else {
+        // giữ lại ảnh cũ
+        $image = $row['image'];
     }
 
+    // update sản phẩm
+    $sql = "UPDATE sanpham 
+        SET product_type = '$type' ,product_name = '$name', description = '$description', 
+        price = '$price', old_price = '$old_price', discount_percent = '$discount_percent', gift = '$gift', 
+        rating = '$rating', sold_count = '$sold_count', image = '$image', video_url = '$video_url'
+        WHERE product_id = '$this_id' ";
+    mysqli_query($conn, $sql);
+
+    // header("location:" . BASE_URL . "/project/products/$type/index1.php");
+    echo "<script>alert('Sửa sản phẩm thành công !'); window.location.href='../admin/index.php?pageLayout=sanPham';</script>";
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,96 +54,96 @@
     <title>Sửa sản phẩm</title>
 
     <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-        background: #f4f6f9;
-        color: #333;
-    }
+        body {
+            background: #f4f6f9;
+            color: #333;
+        }
 
-    .container {
-        max-width: 900px;
-        margin: 30px auto;
-        background: #fff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    .container h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #333;
-    }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
 
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px 40px;
-    }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+        }
 
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-    .form-item {
-        display: flex;
-        flex-direction: column;
-    }
+        .form-item {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .form-item label {
-        font-weight: 600;
-        margin-bottom: 6px;
-        color: #444;
-    }
+        .form-item label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #444;
+        }
 
-    .form-item input,
-    .form-item select {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 15px;
-        width: 100%;
-        transition: all 0.3s;
-    }
+        .form-item input,
+        .form-item select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
 
-    .form-item input:focus,
-    .form-item select:focus {
-        border-color: #2980b9;
-        outline: none;
-        box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
-    }
+        .form-item input:focus,
+        .form-item select:focus {
+            border-color: #2980b9;
+            outline: none;
+            box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+        }
 
-    .form-item img {
-        margin-bottom: 8px;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-    }
+        .form-item img {
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
 
-    .btn-submit {
-        grid-column: span 2;
-        margin-top: 20px;
-        padding: 14px;
-        border: none;
-        border-radius: 8px;
-        background: #3498db;
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        text-align: center;
-    }
+        .btn-submit {
+            grid-column: span 2;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #3498db;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
 
-    .btn-submit:hover {
-        background: #2980b9;
-    }
+        .btn-submit:hover {
+            background: #2980b9;
+        }
     </style>
 
 
@@ -151,7 +151,7 @@
 
 <body>
     <div class="container">
-        <h2>Sản phẩm đang được chỉnh sửa <?php echo "có ID ". $this_id; ?></h2>
+        <h2>Sản phẩm đang được chỉnh sửa <?php echo "có ID " . $this_id; ?></h2>
         <form method="post" enctype="multipart/form-data" class="form-grid">
 
             <!-- cột trái -->
@@ -159,16 +159,16 @@
                 <div class="form-item">
                     <label>Product Type:</label>
                     <select name="type">
-                        <option value="chuachon" <?php if($row["product_type"] == "chuachon") echo "selected"; ?>>Chưa
+                        <option value="chuachon" <?php if ($row["product_type"] == "chuachon") echo "selected"; ?>>Chưa
                             chọn</option>
-                        <option value="tu_lanh" <?php if($row["product_type"] == "tu_lanh") echo "selected"; ?>>Tủ lạnh
+                        <option value="tu_lanh" <?php if ($row["product_type"] == "tu_lanh") echo "selected"; ?>>Tủ lạnh
                         </option>
-                        <option value="may_giat" <?php if($row["product_type"] == "may_giat") echo "selected"; ?>>Máy
+                        <option value="may_giat" <?php if ($row["product_type"] == "may_giat") echo "selected"; ?>>Máy
                             giặt</option>
-                        <option value="tivi" <?php if($row["product_type"] == "tivi") echo "selected"; ?>>Tivi</option>
-                        <option value="dieu_hoa" <?php if($row["product_type"] == "dieu_hoa") echo "selected"; ?>>Điều
+                        <option value="tivi" <?php if ($row["product_type"] == "tivi") echo "selected"; ?>>Tivi</option>
+                        <option value="dieu_hoa" <?php if ($row["product_type"] == "dieu_hoa") echo "selected"; ?>>Điều
                             hòa</option>
-                        <option value="loa" <?php if($row["product_type"] == "loa") echo "selected"; ?>>Loa</option>
+                        <option value="loa" <?php if ($row["product_type"] == "loa") echo "selected"; ?>>Loa</option>
                     </select>
                 </div>
 
