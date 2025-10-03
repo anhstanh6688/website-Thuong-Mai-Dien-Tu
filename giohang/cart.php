@@ -186,8 +186,11 @@
                         VALUES " . $insertString . ";");
                         $success = "Đặt hàng thành công";
 
+
                         // mua xong bỏ hết giỏ hàng cũ
-                        unset($_SESSION["cart"]);
+                        // unset($_SESSION["cart"]);
+                        header("Location: thanhtoan.php"); // chuyển qua trang fake thanh toán
+                        exit();
                     }
                 }
                 break;
@@ -290,11 +293,11 @@
                 <div><label>Điện thoại: </label><input type="text" value="" name="phone" /></div>
                 <div><label>Địa chỉ: </label><input type="text" value="" name="address" /></div>
                 <div><label>Ghi chú: </label><textarea name="note" cols="50" rows="7"></textarea></div>
-                <!-- <input type="submit" name="order_click" class="order_click" value="Đặt hàng" /> -->
-                <a href="thanhtoan.php" class="order_click" style="display:inline-block; padding:10px 18px; margin-top: 5px; background:#3498db; color:#fff; 
+                <input type="submit" name="order_click" class="order_click" value="Đặt hàng" />
+                <!-- <a href="thanhtoan.php" class="order_click" style="display:inline-block; padding:10px 18px; margin-top: 5px; background:#3498db; color:#fff; 
                     border-radius:8px; text-decoration:none; font-weight:600;">
                     Đặt hàng
-                </a>
+                </a> -->
 
             </form>
         <?php } ?>

@@ -258,6 +258,51 @@ session_start();
     #add-to-cart-form .btn.btn-cart:hover {
         background: #4561efff;
     }
+
+    /* sửa xóa comment */
+    .edit-delete {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    /* style chung cho cả 2 nút */
+    .edit-delete a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* nút Xóa */
+    .edit-delete .deletecomm {
+        background-color: #d54038;
+        color: #fff;
+    }
+
+    .edit-delete .deletecomm:hover {
+        background-color: #b7221a;
+    }
+
+    /* nút Sửa */
+    .edit-delete .editcomm {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .edit-delete .editcomm:hover {
+        background-color: #d5af3e;
+    }
+
+    .comment .deletecomm {
+        margin: 0;
+    }
 </style>
 
 <body>
@@ -545,7 +590,7 @@ session_start();
                 $this_id = $_GET['this_id'];
 
                 // Lấy tất cả bình luận 
-                $sql = "SELECT username, rating, comment
+                $sql = "SELECT bl.comment_id, tv.username, bl.rating, bl.comment
                     FROM binhluan bl 
                     JOIN thanhvien tv ON bl.id = tv.id 
                     WHERE bl.product_id = '$this_id'
@@ -572,6 +617,14 @@ session_start();
                             <p class="content">
                                 <?php echo $row['comment']; ?>
                             </p>
+
+                            <!-- delete xóa sửa -->
+                            <div class="edit-delete">
+                                <a class="deletecomm"
+                                    href="../../../crud/deletecomment.php?comment_id=<?php echo $row['comment_id']; ?>&product_id=<?php echo $this_id; ?>&page=item2_2">Xóa</a>
+                                <a class="editcomm"
+                                    href="../../../crud/editcomment.php?comment_id=<?php echo $row['comment_id']; ?>&product_id=<?php echo $this_id; ?>&page=item2_2">Sửa</a>
+                            </div>
                         </div>
                 <?php
                     }

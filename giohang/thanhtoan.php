@@ -2,6 +2,13 @@
 session_start();
 include '../DB/connect.php';
 
+// bấm thanh toán => xóa giỏ hàng => back về
+if (isset($_GET['done'])) {
+    unset($_SESSION['cart']);
+    header("Location: ../trangchu/index.php");
+    exit();
+}
+
 // Lấy sản phẩm trong giỏ
 $products = false;
 $total = 0;
@@ -231,7 +238,7 @@ if (!empty($_SESSION["cart"])) {
 <script>
     function thanhToan() {
         alert("Thanh toán thành công!");
-        window.location.href = "../trangchu/index.php";
+        window.location.href = "thanhtoan.php?done=1";
     }
 </script>
 
